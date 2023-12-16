@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
-import { addProduct } from './redux/products/actionTypes'
+import { addProduct, addToCart } from './redux/products/actionTypes'
 import Cart from './components/cart'
 
 function App() {
@@ -26,6 +26,11 @@ function App() {
     
     dispatch(addProduct(product))
     e.target.reset()
+  }
+
+  const handleCart=(product)=>{
+    console.log(product)
+    dispatch(addToCart(product))
   }
   return (
     <div className='w-full mt-0'>
@@ -62,7 +67,7 @@ function App() {
             <p className="productPrice">BDT <span className="lws-price">{product?.price}</span></p>
             <p className="productQuantity">QTY <span className="lws-quantity">{product?.qty}</span></p>
           </div>
-          <button className="lws-btnAddToCart">Add To Cart</button>
+          <button onClick={()=>handleCart(product)} className="lws-btnAddToCart">Add To Cart</button>
         </div>
       </div>
       ))
